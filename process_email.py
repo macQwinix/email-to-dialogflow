@@ -96,6 +96,8 @@ def detect_intent_with_event_input(
     query_params.channel="email"
     end_user_email_domain = end_user_email.split('@')[1]
     end_user_email_domain = end_user_email_domain.lower()
+    print("End user email domain: {}".format(end_user_email_domain))
+    
     if intent=='TC':
         if end_user_email_domain=='66degrees.com':
             customer_number=1002
