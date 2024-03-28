@@ -43,7 +43,7 @@ def read_email():
         
     print("Search results: {}".format(response))
     # latest_email_id = response[0].split()[-1]
-    for latest_email_id in response.split():
+    for latest_email_id in response[0].split():
       print("Processing email id: {}".format(latest_email_id))
       # Fetch the email body
       status, response = imap.fetch(latest_email_id, '(RFC822)')
