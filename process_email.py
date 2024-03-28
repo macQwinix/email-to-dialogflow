@@ -131,6 +131,6 @@ def detect_intent_with_event_input(
 
 if __name__ == '__main__':
 #  app.run(debug=True)
-  process_email("where is the nearest distribution center to PA, and what are their hours for dry goods?","david.mcdaniel@66degrees.com")
-  process_email("What are my terms for ordering cream cheese core?","david.mcdaniel@66degrees.com")
-  process_email("When will my PO 1002106 be shipped?","david.mcdaniel@66degrees.com")
+  process_email("where is the nearest distribution center to PA, and what are their hours for dry goods?","David Mac McDaniel <david.mcdaniel@66degrees.com>")
+  process_email("What are my terms for ordering cream cheese core?","David Mac McDaniel <david.mcdaniel@66degrees.com>")
+  process_email("When will my PO 1002106 be shipped?","David Mac McDaniel <david.mcdaniel@66degrees.com>")
