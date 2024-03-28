@@ -94,7 +94,7 @@ def detect_intent_with_event_input(
 #        event_query_params=session.EventQueryParameters(event=event)
     )
     query_params.channel="email"
-    end_user_email_domain = end_user_email.split('@')[1]
+    end_user_email_domain = end_user_email.split('@')[1][:-1]
     end_user_email_domain = end_user_email_domain.lower()
     print("End user email domain: {}".format(end_user_email_domain))
     
