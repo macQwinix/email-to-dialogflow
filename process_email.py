@@ -94,7 +94,16 @@ def detect_intent_with_event_input(
 #        event_query_params=session.EventQueryParameters(event=event)
     )
     query_params.channel="email"
-    query_params.parameters=({'end_user_email':end_user_email})
+    end_user_email_domain = end_user_email.split('@')[1]
+    end_user_email_domain = end_user_email_domain.lower()
+    if intent=='TC':
+        if end_user_email_domain=='66degrees.com':
+            customer_number=1002
+        else:
+            customer_number=1001
+        query_params.parameters=({'customer_number':customer_number})
+    else:
+        query_params.parameters=({'end_user_email':end_user_email_domain})
     print("Query params: {}".format(query_params))
     # Construct detect intent request:
 
