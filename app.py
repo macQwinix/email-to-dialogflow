@@ -65,7 +65,9 @@ def read_email():
           if part.get_content_type() == "text/plain":
             body = part.get_payload(decode=True).decode()
             print("Body part: {}".format(body))
-            response = process_email(body, email_msg['From'])
+            print("Reply-to: {}".format(email_msg['Reply-To']))
+          
+            response = process_email(body, email_msg['Reply-to'])
             print("Processed body: {}".format(response))
 
             # Response to the email now
