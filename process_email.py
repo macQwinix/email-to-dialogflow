@@ -1,7 +1,8 @@
 import os
 import email
 import uuid
-
+import sys
+from determine_intent import determine_intent
 # from google.cloud import dialogflowcx_v3beta1 as dialogflow
 from google.cloud.dialogflowcx_v3.services.sessions import SessionsClient
 from google.cloud.dialogflowcx_v3.types import session
@@ -47,6 +48,16 @@ def detect_intent_with_event_input(
     query_text,
     end_user_email,
 ):
+    #
+    # First determin intent of the email.
+    #
+    intent = determine_intent(query_text)
+    if intent=='TC':
+        event="tc_questions"
+
+
+    print(f"Intent: {intent}\n")
+
     """Detects intent using EventInput"""
     client_options = None
     if location != "global":
@@ -63,9 +74,9 @@ def detect_intent_with_event_input(
     )
 
     # Construct detect intent request:
-    event = session.EventInput(event=event)
+    event_ = session.EventInput(event=event)
     query_text_input = session.TextInput(text=query_text)
-    query_input = session.QueryInput(event=event, language_code=language_code)
+    query_input = session.QueryInput(event=event_, language_code=language_code)
     text_input = session.QueryInput(text=query_text_input, language_code=language_code)
 
     request = session.DetectIntentRequest(
@@ -74,8 +85,10 @@ def detect_intent_with_event_input(
     )
 
     response = session_client.detect_intent(request=request)
-    response_text = response.query_result.response_messages[0].text.text[0]
-    print(f"Event Response: {response_text}")
+    print("Raw Response: {}".format(response))
+    sys.stdout.flush()
+    # response_text = response.query_result.response_messages[0].text.text[0]
+    # print(f"Event Response: {response_text}")
 
     query_params = session.QueryParameters(
 #        event_query_params=session.EventQueryParameters(event=event)
@@ -94,7 +107,9 @@ def detect_intent_with_event_input(
     response = session_client.detect_intent(request=request)
     query_response = response.query_result
     print("Raw response: {}",format(query_response))
+    sys.stdout.flush()
     response_text = query_response.response_messages[0].text.text[0]
+    # response_text = "{}".format(query_response)
     print(f"Query Response: {response_text}")
 
     return response_text
@@ -103,3 +118,5 @@ def detect_intent_with_event_input(
 if __name__ == '__main__':
 #  app.run(debug=True)
   process_email("where is the nearest distribution center to PA, and what are their hours for dry goods?","david.mcdaniel@66degrees.com")
+  process_email("What are my terms for ordering cream cheese core?","david.mcdaniel@66degrees.com")
+  process_email("When will my PO 1002106 be shipped?","david.mcdaniel@66degrees.com")

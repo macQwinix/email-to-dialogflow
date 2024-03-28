@@ -1,2 +1,4 @@
 flask
 google-cloud-dialogflow-cx
+google-cloud-aiplatform
+pyarrow
