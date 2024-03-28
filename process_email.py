@@ -105,7 +105,10 @@ def detect_intent_with_event_input(
             customer_number=1001
         query_params.parameters=({'customer_number':customer_number})
     else:
-        query_params.parameters=({'end_user_email':end_user_email_domain})
+        if intent=='DC':
+            query_params.parameters=({'end_user_email':end_user_email})
+        else:
+            query_params.parameters=({'end_user_email':end_user_email_domain})
     print("Query params: {}".format(query_params))
     # Construct detect intent request:
 
