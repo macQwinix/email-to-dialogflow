@@ -10,8 +10,7 @@ parameters = {
     "top_p": 0.8,
     "top_k": 40
 }
-# print("Calling from_pretrained")
-# model = TextGenerationModel.from_pretrained("gemini-1.0-pro")
+
 
 print("Calling GenerativeModel")
 model = GenerativeModel("gemini-pro")

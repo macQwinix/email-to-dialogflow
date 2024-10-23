@@ -23,21 +23,6 @@ def process_email(body,end_user_email):
     print("Response: {}".format(resp_text))
     return resp_text
 
-    # Initialize request argument(s)
-    # query_input = dialogflow.QueryInput()
-    # query_input.text.text = body
-    # query_input.language_code = "EN"
-
-    # request = dialogflow.DetectIntentRequest(
-    #     # session="projects/*/locations/*/agents/*/environments/*/sessions/*",
-    #     session="projects/quantum-engine-377722/locations/global/agents/ccd182f4-1c8d-4578-966b-1765ba1cfafb/environments/Draft/sessions/4656b4-b62-236-1c2-67d618fc6",
-    #     query_input=query_input,
-    # )
-
-    # Make the request
-    # response = client.detect_intent(request=request)
-    # print("Response: {}".format(response))
-
 
 def detect_intent_with_event_input(
     project_id,

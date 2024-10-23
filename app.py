@@ -15,12 +15,7 @@ email_username = os.environ['email_username']
 email_password = os.environ['email_password']
 
 
-# @app.route('/')
-# def index():
-#   return "Ok, nothing done"
 
-
-#@app.route('/read_email', methods=['POST'])
 def read_email():
   # Connect to the email server
   imap = imaplib.IMAP4_SSL(email_server, email_port)
@@ -57,9 +52,6 @@ def read_email():
         print("Email To: {}".format(email_msg['To']))
         print("Email Date: {}".format(email_msg['Date']))
         print("Email reply-to: {}".format(email_msg['Reply-To']))
-
-        # Render the email body in the template
-  #      return render_template('email.html', email_body=email_body)
         
         for part in email_msg.walk():
           if part.get_content_type() == "text/plain":
@@ -82,7 +74,6 @@ def read_email():
   # Close the connection to the email server
   imap.close()
 
- # return render_template('index.html', error='No new emails found')
 
 if __name__ == '__main__':
 #  app.run(debug=True)
